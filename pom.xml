@@ -5,7 +5,7 @@
 
     <groupId>com.monkat.health</groupId>
     <artifactId>spring-livecheck</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -167,6 +167,22 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <scmBranch>gh-pages</scmBranch>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>scm-publish</id>
+                        <phase>site-deploy</phase>
+                        <goals>
+                            <goal>publish-scm</goal>
                         </goals>
                     </execution>
                 </executions>
