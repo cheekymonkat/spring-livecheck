@@ -3,6 +3,7 @@ package com.monkat.health.annotation;
 import com.monkat.health.LiveCheckService;
 import com.monkat.health.model.Alert;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class LiveCheckAspect {
 
     @AfterThrowing(pointcut = "@annotation(hc)", throwing = "ex")
     public void doRecoveryActions(JoinPoint jp, Throwable ex, LiveCheck hc) {
-        LOGGER.debug("CheckConfiguration FAILED: identifier={} message={} error={}", hc.id(), hc.message(), ex.getMessage());
+        LOGGER.debug("HealthCheck FAILED: identifier={} message={} error={}", hc.id(), hc.message(), ex.getMessage());
         manager.addAlert(new Alert(hc.id(), hc.message()));
     }
 

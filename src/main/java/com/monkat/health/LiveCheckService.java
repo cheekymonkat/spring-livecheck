@@ -8,7 +8,6 @@ import com.monkat.health.model.CheckType;
 import com.monkat.health.model.HealthCheck;
 import com.monkat.health.model.config.CheckConfiguration;
 import com.monkat.health.model.config.LiveCheckConfiguration;
-import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.TimerTask;
 
 public class LiveCheckService {
 
-    private static final long INITIAL_DELAY = 1000L;
+    private static final long INITIAL_DELAY = 60000L;
 
     private final Cache<String, Check> mainStore = CacheBuilder.newBuilder()
             .build();
@@ -57,19 +56,20 @@ public class LiveCheckService {
 
     private void scheduleHealthIndicators(final List<TaskedHealthIndicator> healthChecks) {
 
-        Timer timer = new Timer("Live Check Timer");
+        if (healthChecks != null) {
+            Timer timer = new Timer("Live Check Timer");
 
-        healthChecks.forEach(t -> {
+            healthChecks.forEach(t -> {
 
-            TimerTask repeatedTask = new TimerTask() {
-                public void run() {
-                    healthChecks.forEach(t -> t.health());
-                }
-            };
-            timer.scheduleAtFixedRate(repeatedTask, INITIAL_DELAY, t.period());
+                TimerTask repeatedTask = new TimerTask() {
+                    public void run() {
+                        healthChecks.forEach(t -> t.health());
+                    }
+                };
+                timer.scheduleAtFixedRate(repeatedTask, INITIAL_DELAY, t.period());
 
-        });
-
+            });
+        }
     }
 
     public void addAlert(Alert alert) {
