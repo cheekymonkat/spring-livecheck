@@ -4,7 +4,7 @@
 
     <groupId>com.monkat</groupId>
     <artifactId>spring-livecheck</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -172,21 +172,43 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-scm-publish-plugin</artifactId>
-                <version>3.0.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
                 <configuration>
-                    <scmBranch>gh-pages</scmBranch>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>scm-publish</id>
-                        <phase>site-deploy</phase>
-                        <goals>
-                            <goal>publish-scm</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-scm-publish-plugin</artifactId>-->
+                <!--<version>3.0.0</version>-->
+                <!--<configuration>-->
+                    <!--<scmBranch>gh-pages</scmBranch>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>scm-publish</id>-->
+                        <!--<phase>site-deploy</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>publish-scm</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.sonatype.plugins</groupId>-->
+                <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+                <!--<version>1.6.8</version>-->
+                <!--<extensions>true</extensions>-->
+                <!--<configuration>-->
+                    <!--<serverId>ossrh</serverId>-->
+                    <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+                    <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
