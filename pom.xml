@@ -4,7 +4,7 @@
 
     <groupId>com.monkat</groupId>
     <artifactId>spring-livecheck</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -34,7 +34,7 @@
         <connection>scm:git:git@github.com:cheekymonkat/spring-livecheck.git</connection>
         <developerConnection>scm:git:git@github.com:cheekymonkat/spring-livecheck.git</developerConnection>
         <url>git@github.com:cheekymonkat/spring-livecheck.git</url>
-      <tag>spring-livecheck-0.0.5</tag>
+      <tag>spring-livecheck-0.0.3</tag>
   </scm>
 
     <properties>
