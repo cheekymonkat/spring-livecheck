@@ -49,7 +49,7 @@ public class HealthCheckConfiguration {
     }
 
     @Bean
-    public LiveCheckService getLiveCheckService(LiveCheckConfiguration liveCheckConfiguration, List<TaskedHealthIndicator> healthChecks) {
+    public LiveCheckService getLiveCheckService(LiveCheckConfiguration liveCheckConfiguration, @Autowired(required = false) List<TaskedHealthIndicator> healthChecks) {
         return new LiveCheckService(liveCheckConfiguration, healthChecks);
     }
 }
