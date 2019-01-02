@@ -12,7 +12,7 @@
     <description>A simple spring based health check library for live systems that cannot easily create and rely on using
         test or dummy data to verify the health of a system.
     </description>
-    <url>https://www.monkat.com</url>
+    <url>https://github.com/cheekymonkat/spring-livecheck</url>
 
     <licenses>
         <license>
