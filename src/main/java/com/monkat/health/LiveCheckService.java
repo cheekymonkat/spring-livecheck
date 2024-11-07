@@ -24,7 +24,7 @@ public class LiveCheckService {
     private final Cache<String, Check> mainStore = CacheBuilder.newBuilder()
             .build();
 
-    private LiveCheckConfiguration liveCheckConfiguration;
+    private final LiveCheckConfiguration liveCheckConfiguration;
 
     public LiveCheckService(final LiveCheckConfiguration liveCheckConfiguration, final List<TaskedHealthIndicator> healthChecks) {
         this.liveCheckConfiguration = liveCheckConfiguration;
@@ -32,7 +32,6 @@ public class LiveCheckService {
         setupLiveChecks(liveCheckConfiguration);
 
         scheduleHealthIndicators(healthChecks);
-
         System.out.println("bad commit");
     }
 
