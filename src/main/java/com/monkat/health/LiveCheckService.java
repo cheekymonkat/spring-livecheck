@@ -36,7 +36,7 @@ public class LiveCheckService {
         System.out.println("bad commit");
     }
 
-    private void setupLiveChecks(final LiveCheckConfiguration liveCheckConfiguration) {
+    private void setupLiveChecks(LiveCheckConfiguration liveCheckConfiguration) {
         for (CheckConfiguration check : liveCheckConfiguration.getChecks()) {
             registerCheck(Check.builder()
                     .identifier(check.getIdentifier())
