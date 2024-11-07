@@ -32,6 +32,8 @@ public class LiveCheckService {
         setupLiveChecks(liveCheckConfiguration);
 
         scheduleHealthIndicators(healthChecks);
+
+        System.out.println("bad commit");
     }
 
     private void setupLiveChecks(final LiveCheckConfiguration liveCheckConfiguration) {
