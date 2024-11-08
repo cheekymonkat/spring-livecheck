@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("checkstyle:MagicNumber")
 public class CheckConfiguration {
 
     private String identifier;

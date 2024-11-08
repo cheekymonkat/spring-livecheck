@@ -22,19 +22,19 @@ public class IndicatorCheckAspect {
     private final LiveCheckService manager;
     private static final org.slf4j.Logger LOGGER = getLogger(IndicatorCheckAspect.class);
 
-    public IndicatorCheckAspect(@Autowired LiveCheckService manager) {
+    public IndicatorCheckAspect(@Autowired final LiveCheckService manager) {
         this.manager = manager;
     }
 
     @AfterThrowing(pointcut = "@annotation(ic)", throwing = "ex")
-    public void doRecoveryActions(JoinPoint jp, Throwable ex, IndicatorCheck ic) {
+    public void doRecoveryActions(final JoinPoint jp, final Throwable ex, final IndicatorCheck ic) {
         LOGGER.debug("HealthCheck FAILED: identifier={} message={} error={}", ic.id(), ic.message(), ex.getMessage());
         manager.addAlert(new Alert(ic.id(), ic.message()));
     }
 
     @AfterReturning(pointcut = "@annotation(ic)", returning = "val")
-    public void doRecoveryActions(Health val, IndicatorCheck ic) {
-        if(val.getStatus().equals(Status.DOWN)) {
+    public void doRecoveryActions(final Health val, final IndicatorCheck ic) {
+        if (val.getStatus().equals(Status.DOWN)) {
             LOGGER.debug("HealthCheck FAILED: identifier={} message={} status={}", ic.id(), ic.message(), val.getStatus());
             manager.addAlert(new Alert(ic.id(), ic.message()));
         }

@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class LiveCheckStartup {
 
-    public LiveCheckConfiguration setupLiveCheck(InputStream resource) {
+    public LiveCheckConfiguration setupLiveCheck(final InputStream resource) {
         return new Yaml().loadAs(resource, LiveCheckConfiguration.class);
     }
 
