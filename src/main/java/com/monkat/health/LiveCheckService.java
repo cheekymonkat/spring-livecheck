@@ -8,6 +8,7 @@ import com.monkat.health.model.CheckType;
 import com.monkat.health.model.HealthCheck;
 import com.monkat.health.model.config.CheckConfiguration;
 import com.monkat.health.model.config.LiveCheckConfiguration;
+import org.springframework.boot.actuate.health.HealthIndicator;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class LiveCheckService {
     private final Cache<String, Check> mainStore = CacheBuilder.newBuilder()
             .build();
 
-    private LiveCheckConfiguration liveCheckConfiguration;
+    private final LiveCheckConfiguration liveCheckConfiguration;
 
     public LiveCheckService(final LiveCheckConfiguration liveCheckConfiguration, final List<TaskedHealthIndicator> healthChecks) {
         this.liveCheckConfiguration = liveCheckConfiguration;
@@ -32,6 +33,7 @@ public class LiveCheckService {
         setupLiveChecks(liveCheckConfiguration);
 
         scheduleHealthIndicators(healthChecks);
+        System.out.println("bad commit");
     }
 
     private void setupLiveChecks(final LiveCheckConfiguration liveCheckConfiguration) {
@@ -63,7 +65,7 @@ public class LiveCheckService {
 
                 TimerTask repeatedTask = new TimerTask() {
                     public void run() {
-                        healthChecks.forEach(t -> t.health());
+                        healthChecks.forEach(HealthIndicator::health);
                     }
                 };
                 timer.scheduleAtFixedRate(repeatedTask, INITIAL_DELAY, t.period());
@@ -72,7 +74,7 @@ public class LiveCheckService {
         }
     }
 
-    public void addAlert(Alert alert) {
+    public void addAlert(final Alert alert) {
         Check ifPresent = mainStore.getIfPresent(alert.getId());
 
         if (ifPresent != null) {
@@ -83,7 +85,7 @@ public class LiveCheckService {
         }
     }
 
-    public void registerCheck(Check check) {
+    public void registerCheck(final Check check) {
         check.hasCache();
         mainStore.put(check.getIdentifier(), check);
     }

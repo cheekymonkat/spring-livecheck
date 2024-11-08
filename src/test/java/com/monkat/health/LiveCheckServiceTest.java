@@ -25,6 +25,7 @@ class LiveCheckServiceTest {
     public static final String CHECK_1_BUSINESS_IMPACT = "check1_businessImpact";
     public static final String CHECK_1_TECHNICAL_SUMMARY = "check1_technicalSummary";
 
+    @SuppressWarnings("checkstyle:MagicNumber")
     @DisplayName("when check configured then ensure its returned in the report")
     @Test
     public void whenCheckConfiguredEnsureReportMatches() {

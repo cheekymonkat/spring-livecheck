@@ -14,12 +14,12 @@ public class LiveCheckController {
     private final LiveCheckService liveCheckService;
 
     @Autowired
-    public LiveCheckController(LiveCheckService liveCheckService){
+    public LiveCheckController(final LiveCheckService liveCheckService) {
         this.liveCheckService = liveCheckService;
     }
 
     @GetMapping(path = HEALTH, produces = APPLICATION_JSON)
-    public HealthCheck getHealthCheck(){
+    public HealthCheck getHealthCheck() {
         return liveCheckService.getHealthCheck();
     }
 }

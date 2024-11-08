@@ -66,7 +66,7 @@ public class Check {
         return true;
     }
 
-    public void addAlert(Alert alert) {
+    public void addAlert(final Alert alert) {
         hasCache();
         alertCache.put(alert.getCreatedDate(), alert);
     }
@@ -82,6 +82,7 @@ public class Check {
         return ordered;
     }
 
+    @SuppressWarnings("checkstyle:MagicNumber")
     private void calculateStatus() {
         this.lastUpdated = LocalDateTime.now();
         int percent = (int) ((new ArrayList<>(alertCache.asMap().values()).size() * 100.0f) / maxAlerts);
