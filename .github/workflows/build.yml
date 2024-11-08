@@ -1,4 +1,4 @@
-name: Run on Pull Request
+name: Build
 
 on:
   pull_request:
@@ -25,7 +25,7 @@ jobs:
           cache: maven
 
       - name: Build
-        run: mvn clean package
+        run: mvn clean x
       - uses: jwgmeligmeyling/checkstyle-github-action@master
         with:
           path: '**/checkstyle-result.xml'

@@ -137,7 +137,7 @@
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>checkstyle-aggregate</goal>
+                            <goal>checkstyle</goal>
                         </goals>
                     </execution>
                 </executions>
